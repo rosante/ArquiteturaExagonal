@@ -1,0 +1,180 @@
+swagger: "2.0"
+info:
+  description: "Carros API. API para controle de veículos da uma revenda."
+  version: "1.0.0"
+  title: "Carros API"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "no-reply@ruzzante.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "com.ruzzante.arquiteturaexagonal"
+basePath: "/v2"
+tags:
+- name: "car"
+  description: "API da loja"
+
+schemes:
+- "https"
+- "http"
+paths:
+  /car:
+    get:
+      tags:
+      - "car"
+      summary: "Recebe lista de todos carros"
+      description: "Recebe lista de todos carros"
+      responses:
+        "200":
+          description: "Lista de carros"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/Car'
+  
+    post:
+      tags:
+      - "car"
+      summary: "Adiciona um carro"
+      parameters:
+      - in: body
+        name: "body"
+        description: "Objeto Carro em formato Json"
+        required: true
+        schema:
+          $ref: '#/definitions/Car'
+      responses:
+        '201':
+          description: "Carro criado"
+       
+    put:
+      tags:
+      - "car"
+      summary: "Atualiza um carro"
+      description: ""
+      operationId: "updateCar"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: body
+        name: "body"
+        description: "Objeto Carro em formato Json"
+        required: true
+        schema:
+          $ref: '#/definitions/Car'
+      responses:
+        "400":
+          description: "Id informado inválido"
+        "404":
+          description: "Carro não encontrado"
+        "405":
+          description: "Exceção de validação"
+              
+  /car/{id}:
+    get:
+      tags:
+      - "car"
+      parameters:
+        - name: id
+          in: path
+          description: Car ID
+          required: true
+          type: integer
+      summary: "Recebe carro solicitado"
+      description: "Recebe carro solicitado"
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            type: "object"
+            items:
+              $ref: '#/definitions/Car'
+        "404":
+          description: "Carro não encontrado"
+    
+    delete:
+      tags:
+      - "car"
+      parameters:
+        - name: id
+          in: path
+          description: Car ID
+          required: true
+          type: integer
+      summary: "Remove carro solicitado"
+      description: "Remove carro solicitado"
+      responses:
+        '204':
+          description: "Carro deletado"
+        "400":
+          description: "Id informado inválido"
+        "404":
+          description: "Carro não encontrado"
+              
+
+definitions:
+  
+  Car:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      placa: 
+        type: "string"
+      tipo:
+        type: "string"
+      marca: 
+        type: "string"
+      modelo: 
+        type: "string"
+      ano: 
+        type: "string"
+      cor: 
+        type: "string"
+      kilometragem: 
+        type: "integer"
+      combustivel: 
+        type: "string"
+      descricao: 
+        type: "string"
+      vendido: 
+        type: "boolean"
+      valor: 
+        type: "number"
+      agencia: 
+        type: "string"
+      recursos: 
+        $ref: '#/definitions/Optional'
+       
+    
+  Optional:
+    type: "object"
+    properties:
+      direcaoHidraulica: 
+        type: "boolean"
+      cambioAutomatico: 
+        type: "boolean"
+      vidroEletrico: 
+        type: "boolean"
+      travaEletrica: 
+        type: "boolean"
+      som: 
+        type: "boolean"
+      alarme: 
+        type: "boolean"
+      cameraDeRe: 
+        type: "boolean" 
+  
+  
+
+
+    
+    
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
