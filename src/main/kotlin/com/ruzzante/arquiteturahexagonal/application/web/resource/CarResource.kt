@@ -24,8 +24,10 @@ class CarResource (
 
     @GetMapping("{id}")
     fun getCarDetails(@PathVariable("id") id:Long) = repository.getDetail(id)
-        .let{ResponseEntity.ok().body(CarResponse.from(it))}
+        ?.let{ResponseEntity.ok().body(CarResponse.from(it))}
+        ?: ResponseEntity.notFound().build<Void>()
 
+    @PostMapping
     fun insertCar(@Valid @RequestBody request: CarRequest) = request.toCar()
         .run {
             repository.insert(this)
@@ -35,4 +37,21 @@ class CarResource (
                 .created(URI("$API_PATH/${it.id}"))
                 .body(CarResponse.from(it))
         }
+
+    @PutMapping("{id}")
+    fun updateCar(@Valid @RequestBody request: CarRequest, @PathVariable("id") id:Long) =
+        repository.getDetail(id)?.let {
+            CarRequest.to(it.id!!, request)
+                .apply {
+                    repository.update(this)
+                }
+                .let{ car ->
+                    ResponseEntity.ok().body(CarResponse.from(car))
+                }
+        } ?: ResponseEntity.notFound().build<Void>()
+
+    @DeleteMapping("{id}")
+    fun deleteCar(@PathVariable("id") id:Long) = repository.delete(id)
+        ?.let{ResponseEntity.ok()}
+        ?: ResponseEntity.notFound().build<Void>()
 }

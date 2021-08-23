@@ -58,6 +58,7 @@ data class CarRequest(
     @field:NotEmpty
     val recursos: OptionalRequest
 ){
+    // Converte o Request para o Objeto do Domain
     fun toCar() = Car(
         placa = placa,
         tipo = tipo,
@@ -73,4 +74,23 @@ data class CarRequest(
         agencia = agencia,
         recursos = recursos.toOptional()
     )
+
+    companion object {
+        fun to(id: Long, request: CarRequest) = Car(
+            id = id,
+            placa = request.placa,
+            tipo = request.tipo,
+            marca = request.marca,
+            modelo = request.modelo,
+            ano = request.ano,
+            cor = request.cor,
+            kilometragem = request.kilometragem,
+            combustivel = request.combustivel,
+            descricao = request.descricao,
+            vendido = request.vendido,
+            valor = request.valor,
+            agencia = request.agencia,
+            recursos = request.recursos.toOptional()
+        )
+    }
 }
