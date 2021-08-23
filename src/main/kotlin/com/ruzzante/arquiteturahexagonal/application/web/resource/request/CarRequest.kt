@@ -1,5 +1,8 @@
 package com.ruzzante.arquiteturahexagonal.application.web.resource.request
 
+import com.ruzzante.arquiteturahexagonal.application.web.resource.response.OptionalResponse
+import com.ruzzante.arquiteturahexagonal.domain.car.Car
+import com.ruzzante.arquiteturahexagonal.domain.optional.Optional
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.NotNull
@@ -53,5 +56,21 @@ data class CarRequest(
     @field:NotNull
     @field:NotBlank
     @field:NotEmpty
-    val recursos: OpcionalRequest
-)
+    val recursos: OptionalRequest
+){
+    fun toCar() = Car(
+        placa = placa,
+        tipo = tipo,
+        marca = marca,
+        modelo = modelo,
+        ano = ano,
+        cor = cor,
+        kilometragem = kilometragem,
+        combustivel = combustivel,
+        descricao = descricao,
+        vendido = vendido,
+        valor = valor,
+        agencia = agencia,
+        recursos = recursos.toOptional()
+    )
+}
