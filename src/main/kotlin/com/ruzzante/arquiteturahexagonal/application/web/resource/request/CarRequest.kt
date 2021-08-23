@@ -1,4 +1,4 @@
-package com.ruzzante.arquiteturahexagonal.application.web.request
+package com.ruzzante.arquiteturahexagonal.application.web.resource.request
 
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotEmpty

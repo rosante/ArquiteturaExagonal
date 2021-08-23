@@ -1,4 +1,4 @@
-package com.ruzzante.arquiteturahexagonal.application.web.response
+package com.ruzzante.arquiteturahexagonal.application.web.resource.response
 
 data class OpcionalResponse(
     val direcaoHidraulica: Boolean,
