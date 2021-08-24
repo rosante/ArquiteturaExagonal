@@ -46,12 +46,13 @@ class CarResource (
                     repository.update(this)
                 }
                 .let{ car ->
-                    ResponseEntity.ok().body(CarResponse.from(car))
+                    ResponseEntity.accepted().body(CarResponse.from(car))
+                    //ResponseEntity.ok().body(CarResponse.from(car))
                 }
         } ?: ResponseEntity.notFound().build<Void>()
 
     @DeleteMapping("{id}")
     fun deleteCar(@PathVariable("id") id:Long) = repository.delete(id)
-        ?.let{ResponseEntity.ok()}
+        ?.let{ResponseEntity.accepted().build<Void>()}
         ?: ResponseEntity.notFound().build<Void>()
 }

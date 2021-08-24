@@ -5,3 +5,4 @@
 - Existem os data class de request e response para que as Classes de Borda não tem na Classe de Domain
 - Utilizando os decoradores do javax.validation.constraints para validar os requests
 - Os métodos criados no Request e Response como from e to convertem a camada de borda para o domain
+- A configuração será alterada de application.configuration para application.yaml
