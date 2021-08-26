@@ -11,13 +11,6 @@ create table car (
     descricao text,
     vendido Bool not null,
     valor Double precision,
-    agencia varchar(128),
-    direcaoHidraulica Bool not null,
-    cambioAutomatico Bool not null,
-    vidroEletrico Bool not null,
-    travaEletrica Bool not null,
-    som Bool not null,
-    alarme Bool not null,
-    cameraDeRe Bool not null
+    agencia varchar(128)
 );
 alter table car add constraint UK_5r88eemotwgru6k0ilqb2ledh unique (placa);
