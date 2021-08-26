@@ -1,7 +1,5 @@
 package com.ruzzante.arquiteturahexagonal.domain.car
 
-import com.ruzzante.arquiteturahexagonal.domain.optional.Optional
-
 class Car(
     val id: Long? = null,
     val placa: String,
@@ -15,6 +13,5 @@ class Car(
     val descricao: String?,
     val vendido: Boolean,
     val valor: Double,
-    val agencia: String,
-    val recursos: Optional
+    val agencia: String
 )

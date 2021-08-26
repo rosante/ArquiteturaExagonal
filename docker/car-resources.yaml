@@ -1,6 +1,6 @@
 version: '3.2'
 services:
-  postgres-avenger:
+  postgres-car:
     image: postgres:12-alpine
     environment:
       POSTGRES_USER: ${DB_USER}
@@ -14,15 +14,15 @@ services:
     networks:
       - postgres-compose-network
 
-  pgadmin-avenger:
+  pgadmin-car:
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     ports:
       - "5556:80"
     depends_on:
-      - postgres-avenger
+      - postgres-car
     networks:
       - postgres-compose-network
 

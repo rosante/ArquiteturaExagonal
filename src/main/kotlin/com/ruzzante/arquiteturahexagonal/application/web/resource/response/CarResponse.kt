@@ -15,8 +15,7 @@ data class CarResponse (
     val descricao: String?,
     val vendido: Boolean,
     val valor: Double,
-    val agencia: String,
-    val recursos: OptionalResponse
+    val agencia: String
 ){
     companion object {
         fun from(car: Car) = CarResponse(
@@ -32,8 +31,7 @@ data class CarResponse (
             descricao = car.descricao,
             vendido = car.vendido,
             valor = car.valor,
-            agencia = car.agencia,
-            recursos = OptionalResponse.from(car.recursos)
+            agencia = car.agencia
         )
     }
 }
