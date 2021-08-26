@@ -148,30 +148,6 @@ definitions:
         type: "number"
       agencia: 
         type: "string"
-      recursos: 
-        $ref: '#/definitions/Optional'
-       
-    
-  Optional:
-    type: "object"
-    properties:
-      direcaoHidraulica: 
-        type: "boolean"
-      cambioAutomatico: 
-        type: "boolean"
-      vidroEletrico: 
-        type: "boolean"
-      travaEletrica: 
-        type: "boolean"
-      som: 
-        type: "boolean"
-      alarme: 
-        type: "boolean"
-      cameraDeRe: 
-        type: "boolean" 
-  
-  
-
 
     
     
